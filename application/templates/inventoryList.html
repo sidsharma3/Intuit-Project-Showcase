@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}InventoryList{% endblock %}
+{% block content%}
+    <br/>
+    <h1 align="center">Inventory</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <a href="/getProductData" class="btn btn-primary" >Download CSV</a>
+                <a href="/create" class="btn btn-primary">Add New Inventory Item</a>
+            </div>
+        </div>
+    </div>
+    <br/>
+    {% if inventory == None %}
+        <h2 align="center">Click on the Add New Inventory Item Button to Add an Inventory Item</h2>
+    {% else %}
+        <table class="table">
+            <tr>
+                <th scope="col">Item Name:</th>
+                <th scope="col">Item Description:</th>
+                <th scope="col">Quantity:</th> 
+            </tr>
+            {% for item in inventory.allInventoryItems %}
+            <tr>
+                <th scope="col">{{ item.name }}</th>
+                <th scope="col">{{ item.description }}</th>
+                <th scope="col">{{ item.quantity }}</th>
+                <th>
+                    <form method="POST" action="/delete">
+                        <button name="deleteId" class="btn btn-danger" value={{item.id}}>Delete Item</button>
+                    </form>
+                </th>
+                <th>
+                    <a href={{item.id}} class="btn btn-warning">Edit Item</a>
+                </th>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

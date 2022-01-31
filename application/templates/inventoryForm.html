@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+{% block title %}InventoryForm{% endblock %} 
+{% block content%}
+    <br/>
+    <h1 align="center">Add/Edit Inventory Item</h1>
+    <form method="POST">
+        {% if item == None %}
+            <div class="form-group">
+                <label for="name">Enter Name of Inventory Item:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Inventory Item Name"
+                />
+                <br/>
+                <label for="quantity">Enter Quantity of Inventory Item:</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    name="quantity"
+                    placeholder="Inventory Item Quantity"
+                />
+                
+                <br/>
+                <label for="description">Enter Description of Inventory Item:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    placeholder="Inventory Item Description"
+                />
+                <br/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        {% else %}
+            <div class="form-group">
+                <label for="name">Enter Name of Inventory Item:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    value="{{item.name}}"
+                />
+                <br/>
+                <label for="quantity">Enter Quantity of Inventory Item:</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    name="quantity"
+                    value="{{item.quantity}}"
+                />
+                <br/>
+                <label for="description">Enter Description of Inventory Item:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    name="description"
+                    value="{{item.description}}"
+                />
+                <br />
+                <div align="center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        {% endif %} 
+    </form>
+{% endblock %}
